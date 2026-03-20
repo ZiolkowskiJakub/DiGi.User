@@ -25,7 +25,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Reference Include="DiGi.Core">
-	    <HintPath>..\..\..\DiGi.Core\bin\DiGi.Core.dll</HintPath>
+	    <HintPath>..\..\DiGi.Core\bin\DiGi.Core.dll</HintPath>
 	  </Reference>
 	</ItemGroup>
 
