@@ -408,17 +408,20 @@ FodyWeavers.xsd
 # Custom overrides for DiGi.User project
 # =================================================================
 
-# Ensure the main project folder is not ignored even if it contains "User"
+# 1. Allow the project folders to be scanned
 !DiGi.User/
+!DiGi.User/*/
 
-# Ensure project files are tracked
-!DiGi.User/*.csproj
-!DiGi.User/*.cs
+# 2. Ensure we track the essential source files
+!DiGi.User/**/*.cs
+!DiGi.User/**/*.csproj
+!DiGi.User/**/*.xaml
+!DiGi.User/**/*.resx
 
-# Specific exception for user-named directories in this solution
-!**/DiGi.User/**
+# 3. Re-ignore build artifacts strictly for this project
+# This stops the .editorconfig and temporary dlls from being tracked
+DiGi.User/**/[Bb]in/
+DiGi.User/**/[Oo]bj/
 
-# Re-ignore standard build artifacts inside the DiGi.User folder 
-# (just in case the negation above was too broad)
-DiGi.User/[Bb]in/
-DiGi.User/[Oo]bj/
+# 4. Optional: If you use specific add-in manifest files (.addin or .ghpy)
+!DiGi.User/**/*.addin
