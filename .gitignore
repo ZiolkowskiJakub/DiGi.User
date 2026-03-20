@@ -408,20 +408,22 @@ FodyWeavers.xsd
 # Custom overrides for DiGi.User project
 # =================================================================
 
-# 1. Allow the project folders to be scanned
+# 1. Allow the main project root
 !DiGi.User/
-!DiGi.User/*/
 
-# 2. Ensure we track the essential source files
-!DiGi.User/**/*.cs
-!DiGi.User/**/*.csproj
-!DiGi.User/**/*.xaml
-!DiGi.User/**/*.resx
-
-# 3. Re-ignore build artifacts strictly for this project
-# This stops the .editorconfig and temporary dlls from being tracked
+# 2. Explicitly RE-IGNORE VS internal folders and build artifacts
+# We put these AFTER the negation to ensure they take precedence
+DiGi.User/**/.vs/
 DiGi.User/**/[Bb]in/
 DiGi.User/**/[Oo]bj/
+DiGi.User/**/*.user
+DiGi.User/**/*.suo
 
-# 4. Optional: If you use specific add-in manifest files (.addin or .ghpy)
-!DiGi.User/**/*.addin
+# 3. Whitelist only what we actually need
+!DiGi.User/**/*.cs
+!DiGi.User/**/*.csproj
+!DiGi.User/**/*.sln
+!DiGi.User/**/*.xaml
+!DiGi.User/**/*.resx
+!DiGi.User/**/*.png
+!DiGi.User/**/*.ico
