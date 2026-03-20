@@ -408,17 +408,4 @@ FodyWeavers.xsd
 # Custom overrides for DiGi.User project
 # =================================================================
 
-# 1. Allow the project folders to be scanned
-!DiGi.User/
-!DiGi.User/*/
 
-# 2. Ensure we track the essential source files
-!DiGi.User/**/*.cs
-!DiGi.User/**/*.csproj
-!DiGi.User/**/*.xaml
-!DiGi.User/**/*.resx
-
-# 3. Re-ignore build artifacts strictly for this project
-# This stops the .editorconfig and temporary dlls from being tracked
-DiGi.User/**/[Bb]in/
-DiGi.User/**/[Oo]bj/
