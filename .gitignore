@@ -6,7 +6,7 @@
 # User-specific files
 *.rsuser
 *.suo
-*.user
+#*.user
 *.userosscache
 *.sln.docstates
 
@@ -402,10 +402,6 @@ FodyWeavers.xsd
 # =================================================================
 
 # User specific files
-#[Uu]ser [Ff]iles/
-
-# =================================================================
-# Custom overrides for DiGi.User project
-# =================================================================
+[Uu]ser [Ff]iles/
 
 
