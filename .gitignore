@@ -397,5 +397,28 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+# =================================================================
+# Custom overrides for DiGi project
+# =================================================================
+
 # User specific files
 [Uu]ser [Ff]iles/
+
+# =================================================================
+# Custom overrides for DiGi.User project
+# =================================================================
+
+# Ensure the main project folder is not ignored even if it contains "User"
+!DiGi.User/
+
+# Ensure project files are tracked
+!DiGi.User/*.csproj
+!DiGi.User/*.cs
+
+# Specific exception for user-named directories in this solution
+!**/DiGi.User/**
+
+# Re-ignore standard build artifacts inside the DiGi.User folder 
+# (just in case the negation above was too broad)
+DiGi.User/[Bb]in/
+DiGi.User/[Oo]bj/
