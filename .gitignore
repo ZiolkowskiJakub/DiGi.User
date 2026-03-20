@@ -402,7 +402,7 @@ FodyWeavers.xsd
 # =================================================================
 
 # User specific files
-[Uu]ser [Ff]iles/
+#[Uu]ser [Ff]iles/
 
 # =================================================================
 # Custom overrides for DiGi.User project
