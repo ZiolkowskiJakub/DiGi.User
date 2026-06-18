@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace DiGi.User.Classes
 {
+    /// <summary>
+    /// Represents the login credentials for a user, providing functionality for serialization and initialization from various sources.
+    /// </summary>
     public class UserLogin : Core.Classes.SerializableObject
     {
         /// <summary>

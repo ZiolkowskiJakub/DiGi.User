@@ -3,6 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace DiGi.User.Classes
 {
+    /// <summary>
+    /// Represents a user within the system, providing properties for identity and contact information and supporting serialization.
+    /// </summary>
     public class User : Core.Classes.SerializableObject
     {
         /// <summary>
