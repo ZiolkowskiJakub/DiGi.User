@@ -1,3 +1,5 @@
+#### [DiGi\.User](DiGi.User.Overview.md 'DiGi\.User\.Overview')
+
 ## DiGi\.User\.Classes Namespace
 ### Classes
 
