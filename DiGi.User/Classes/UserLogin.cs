@@ -13,6 +13,7 @@ namespace DiGi.User.Classes
         /// Initializes a new instance of the UserLogin class with the specified email.
         /// </summary>
         /// <param name="email">The email address of the user.</param>
+        [JsonConstructor]
         public UserLogin(string? email)
             : base()
         {
