@@ -1,4 +1,3 @@
-﻿using System;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 
@@ -41,7 +40,6 @@ namespace DiGi.User.Classes
         public UserLogin(JsonObject jsonObject)
             : base(jsonObject)
         {
-
         }
 
         /// <summary>
@@ -55,6 +53,5 @@ namespace DiGi.User.Classes
         /// </summary>
         [JsonInclude, JsonPropertyName("Password")]
         public string? Password { get; private set; }
-
     }
 }

@@ -41,7 +41,6 @@ namespace DiGi.User.Classes
         public User(JsonObject jsonObject)
             : base(jsonObject)
         {
-
         }
 
         /// <summary>
