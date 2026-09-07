@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Nodes;
+using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 
 namespace DiGi.User.Classes
@@ -30,6 +30,7 @@ namespace DiGi.User.Classes
                 Email = user.Email;
                 LastName = user.LastName;
                 FirstName = user.FirstName;
+                Level = user.Level;
             }
         }
 
@@ -60,5 +61,24 @@ namespace DiGi.User.Classes
         /// </summary>
         [JsonInclude, JsonPropertyName("LastName")]
         public string? LastName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the permission level of the user.
+        /// <para>The value uses a tiered gradient scale with one-order-of-magnitude gaps between tiers
+        /// (Guest = 0, User = 10, Admin = 100, Owner = 1000), so intermediate levels
+        /// can be inserted later without renumbering. Use <see cref="GetUserLevel"/> to resolve the
+        /// integer to its <see cref="Enums.UserLevel"/> tier.</para>
+        /// </summary>
+        [JsonInclude, JsonPropertyName("Level")]
+        public int Level { get; set; }
+
+        /// <summary>
+        /// Resolves the <see cref="Level"/> integer to the highest matching <see cref="Enums.UserLevel"/> tier.
+        /// </summary>
+        /// <returns>The corresponding <see cref="Enums.UserLevel"/> enum value.</returns>
+        public Enums.UserLevel GetUserLevel()
+        {
+            return Level.UserLevel();
+        }
     }
 }

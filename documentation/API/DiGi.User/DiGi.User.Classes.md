@@ -106,6 +106,21 @@ public string? LastName { get; set; }
 
 #### Property Value
 [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+### Methods
+
+<a name='DiGi.User.Classes.User.GetUserLevel()'></a>
+
+## User\.GetUserLevel\(\) Method
+
+Resolves the [DiGi\.User\.Classes\.User\.Level](https://learn.microsoft.com/en-us/dotnet/api/digi.user.classes.user.level 'DiGi\.User\.Classes\.User\.Level') integer to the highest matching [UserLevel](DiGi.User.Enums.md#DiGi.User.Enums.UserLevel 'DiGi\.User\.Enums\.UserLevel') tier\.
+
+```csharp
+public DiGi.User.Enums.UserLevel GetUserLevel();
+```
+
+#### Returns
+[UserLevel](DiGi.User.Enums.md#DiGi.User.Enums.UserLevel 'DiGi\.User\.Enums\.UserLevel')  
+The corresponding [UserLevel](DiGi.User.Enums.md#DiGi.User.Enums.UserLevel 'DiGi\.User\.Enums\.UserLevel') enum value\.
 
 <a name='DiGi.User.Classes.UserLogin'></a>
 
