@@ -106,13 +106,31 @@ public string? LastName { get; set; }
 
 #### Property Value
 [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
+<a name='DiGi.User.Classes.User.Level'></a>
+
+## User\.Level Property
+
+Gets or sets the permission level of the user\.
+
+The value uses a tiered gradient scale with one-order-of-magnitude gaps between tiers
+            (Guest = 0, User = 10, Admin = 100, Owner = 1000), so intermediate levels
+            can be inserted later without renumbering. Use [GetUserLevel\(\)](DiGi.User.Classes.md#DiGi.User.Classes.User.GetUserLevel() 'DiGi\.User\.Classes\.User\.GetUserLevel\(\)') to resolve the
+            integer to its [UserLevel](DiGi.User.Enums.md#DiGi.User.Enums.UserLevel 'DiGi\.User\.Enums\.UserLevel') tier.
+
+```csharp
+public int Level { get; set; }
+```
+
+#### Property Value
+[System\.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System\.Int32')
 ### Methods
 
 <a name='DiGi.User.Classes.User.GetUserLevel()'></a>
 
 ## User\.GetUserLevel\(\) Method
 
-Resolves the [DiGi\.User\.Classes\.User\.Level](https://learn.microsoft.com/en-us/dotnet/api/digi.user.classes.user.level 'DiGi\.User\.Classes\.User\.Level') integer to the highest matching [UserLevel](DiGi.User.Enums.md#DiGi.User.Enums.UserLevel 'DiGi\.User\.Enums\.UserLevel') tier\.
+Resolves the [Level](DiGi.User.Classes.md#DiGi.User.Classes.User.Level 'DiGi\.User\.Classes\.User\.Level') integer to the highest matching [UserLevel](DiGi.User.Enums.md#DiGi.User.Enums.UserLevel 'DiGi\.User\.Enums\.UserLevel') tier\.
 
 ```csharp
 public DiGi.User.Enums.UserLevel GetUserLevel();
@@ -121,6 +139,148 @@ public DiGi.User.Enums.UserLevel GetUserLevel();
 #### Returns
 [UserLevel](DiGi.User.Enums.md#DiGi.User.Enums.UserLevel 'DiGi\.User\.Enums\.UserLevel')  
 The corresponding [UserLevel](DiGi.User.Enums.md#DiGi.User.Enums.UserLevel 'DiGi\.User\.Enums\.UserLevel') enum value\.
+
+<a name='DiGi.User.Classes.UserCredential'></a>
+
+## UserCredential Class
+
+Represents the stored password credential of a user, keyed by the same unique email as the [User](DiGi.User.Classes.md#DiGi.User.Classes.User 'DiGi\.User\.Classes\.User') it belongs to\.
+
+The password itself is never stored. [PasswordHash](DiGi.User.Classes.md#DiGi.User.Classes.UserCredential.PasswordHash 'DiGi\.User\.Classes\.UserCredential\.PasswordHash') holds the Base64 encoded PBKDF2 derived key of the
+            password, salted with [PasswordSalt](DiGi.User.Classes.md#DiGi.User.Classes.UserCredential.PasswordSalt 'DiGi\.User\.Classes\.UserCredential\.PasswordSalt') and stretched over [PasswordIterations](DiGi.User.Classes.md#DiGi.User.Classes.UserCredential.PasswordIterations 'DiGi\.User\.Classes\.UserCredential\.PasswordIterations') iterations. The
+            iteration count is stored per credential so it can be raised later without invalidating the credentials already written.
+
+This type exists for storage and verification only. It carries the material an offline attack needs and MUST NEVER be
+            returned from an endpoint, logged, or embedded in the [User](DiGi.User.Classes.md#DiGi.User.Classes.User 'DiGi\.User\.Classes\.User') payload.
+
+```csharp
+public class UserCredential : DiGi.Core.Classes.SerializableObject
+```
+
+Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') → [DiGi\.Core\.Classes\.Object](https://learn.microsoft.com/en-us/dotnet/api/digi.core.classes.object 'DiGi\.Core\.Classes\.Object') → [DiGi\.Core\.Classes\.SerializableObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.classes.serializableobject 'DiGi\.Core\.Classes\.SerializableObject') → UserCredential
+### Constructors
+
+<a name='DiGi.User.Classes.UserCredential.UserCredential(DiGi.User.Classes.UserCredential)'></a>
+
+## UserCredential\(UserCredential\) Constructor
+
+Initializes a new instance of the UserCredential class by copying another UserCredential object\.
+
+```csharp
+public UserCredential(DiGi.User.Classes.UserCredential userCredential);
+```
+#### Parameters
+
+<a name='DiGi.User.Classes.UserCredential.UserCredential(DiGi.User.Classes.UserCredential).userCredential'></a>
+
+`userCredential` [UserCredential](DiGi.User.Classes.md#DiGi.User.Classes.UserCredential 'DiGi\.User\.Classes\.UserCredential')
+
+The source UserCredential object to copy from\.
+
+<a name='DiGi.User.Classes.UserCredential.UserCredential(string,string,string,int)'></a>
+
+## UserCredential\(string, string, string, int\) Constructor
+
+Initializes a new instance of the UserCredential class\.
+
+```csharp
+public UserCredential(string? email, string? passwordHash, string? passwordSalt, int passwordIterations);
+```
+#### Parameters
+
+<a name='DiGi.User.Classes.UserCredential.UserCredential(string,string,string,int).email'></a>
+
+`email` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
+The email address of the user the credential belongs to\.
+
+<a name='DiGi.User.Classes.UserCredential.UserCredential(string,string,string,int).passwordHash'></a>
+
+`passwordHash` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
+The Base64 encoded PBKDF2 derived key of the password\.
+
+<a name='DiGi.User.Classes.UserCredential.UserCredential(string,string,string,int).passwordSalt'></a>
+
+`passwordSalt` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
+The Base64 encoded salt the derived key was produced with\.
+
+<a name='DiGi.User.Classes.UserCredential.UserCredential(string,string,string,int).passwordIterations'></a>
+
+`passwordIterations` [System\.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System\.Int32')
+
+The number of PBKDF2 iterations the derived key was produced with\.
+
+<a name='DiGi.User.Classes.UserCredential.UserCredential(System.Text.Json.Nodes.JsonObject)'></a>
+
+## UserCredential\(JsonObject\) Constructor
+
+Initializes a new instance of the UserCredential class from a JsonObject\.
+
+```csharp
+public UserCredential(System.Text.Json.Nodes.JsonObject jsonObject);
+```
+#### Parameters
+
+<a name='DiGi.User.Classes.UserCredential.UserCredential(System.Text.Json.Nodes.JsonObject).jsonObject'></a>
+
+`jsonObject` [System\.Text\.Json\.Nodes\.JsonObject](https://learn.microsoft.com/en-us/dotnet/api/system.text.json.nodes.jsonobject 'System\.Text\.Json\.Nodes\.JsonObject')
+
+The JSON object containing user credential data\.
+### Properties
+
+<a name='DiGi.User.Classes.UserCredential.Email'></a>
+
+## UserCredential\.Email Property
+
+Gets the email address of the user the credential belongs to\.
+
+```csharp
+public string? Email { get; private set; }
+```
+
+#### Property Value
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
+<a name='DiGi.User.Classes.UserCredential.PasswordHash'></a>
+
+## UserCredential\.PasswordHash Property
+
+Gets the Base64 encoded PBKDF2 derived key of the password\.
+
+```csharp
+public string? PasswordHash { get; private set; }
+```
+
+#### Property Value
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
+<a name='DiGi.User.Classes.UserCredential.PasswordIterations'></a>
+
+## UserCredential\.PasswordIterations Property
+
+Gets the number of PBKDF2 iterations the derived key was produced with\.
+
+```csharp
+public int PasswordIterations { get; private set; }
+```
+
+#### Property Value
+[System\.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System\.Int32')
+
+<a name='DiGi.User.Classes.UserCredential.PasswordSalt'></a>
+
+## UserCredential\.PasswordSalt Property
+
+Gets the Base64 encoded salt the derived key was produced with\.
+
+```csharp
+public string? PasswordSalt { get; private set; }
+```
+
+#### Property Value
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 <a name='DiGi.User.Classes.UserLogin'></a>
 
